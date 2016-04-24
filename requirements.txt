@@ -1,0 +1,6 @@
+# MyApp
+
+Flask==0.10.1
+Flask-SQLAlchemy==2.1
+PyMySQL==0.7.2
+paramiko==1.16.0

@@ -66,3 +66,11 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
+
+# IDE: idea
+**/.idea
+**/.project
+**/.git
+**/*.iml
+**/*.ipr
+**/*.iws

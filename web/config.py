@@ -8,8 +8,8 @@ PORT = 9998
 # -- mysql config --
 DB_HOST = "127.0.0.1"
 DB_PORT = 3306
-DB_USER = "root"
-DB_PASS = "abc$#@!8008CBA"
+DB_USER = "dev"
+DB_PASS = "123456"
 DB_NAME = "pydelo"
 
 # -- web app config --

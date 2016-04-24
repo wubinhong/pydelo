@@ -8,15 +8,14 @@ import random
 import string
 from hashlib import md5
 
-from web import db
 from web.utils.log import Logger
 from web.models.users import Users
 from web.services.hosts import hosts
 from web.services.projects import projects
-
 from .base import Base
 from web.utils.error import Error
 from .sessions import sessions
+
 
 logger = Logger("user service")
 
@@ -25,14 +24,17 @@ class UsersService(Base):
     __model__ = Users
 
     def login(self, username, password):
-        password = md5(password).hexdigest().upper()
-        user = self.first(name=username, password=password)
+        # password = md5(password).hexdigest().upper()
+        password_md5 = md5(password.encode()).hexdigest().upper()   # for python3
+        user = self.first(name=username, password=password_md5)
+        logger.info('%s, %s -> %s -> %s' % (username, password, password_md5, user))
         if user is None:
             raise Error(13000)
         session = sessions.first(user_id=user.id)
         expired = datetime.fromtimestamp(time.time()+24*60*60).isoformat()
         if session is None:
-            sign = ''.join(random.choice(string.letters+string.digits) for _ in range(20))
+            # sign = ''.join(random.choice(string.letters+string.digits) for _ in range(20))
+            sign = ''.join(random.choice(string.ascii_letters+string.digits) for _ in range(20))    # for python3
             sessions.create(user_id=user.id,
                 session=sign,
                 expired=expired)
