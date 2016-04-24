@@ -13,6 +13,8 @@ from web.services.users import users
 from web.services.sessions import sessions
 
 from functools import wraps
+
+
 def authorize(func):
     @wraps(func)
     def decorator(*args, **kargs):

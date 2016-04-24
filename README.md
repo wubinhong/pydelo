@@ -24,6 +24,7 @@ git clone git@github.com:meanstrong/pydelo.git
 cd pydelo
 mysql -h root -p pydelo < db-schema.sql  # create database and tables
 vi web/config.py # set up module config such as mysql connector
+pip3 install -r requirements.txt    # install dependency modules
 python init.py   # add some data to mysql or you can do it yourself
 
 python manage.py # start flask web app
